@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SistemaDeGerenciamentoDePedidosIntegradoApplication {
+public class msGestaoPedido {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaDeGerenciamentoDePedidosIntegradoApplication.class, args);
+		SpringApplication.run(msGestaoPedido.class, args);
 	}
 
 }
