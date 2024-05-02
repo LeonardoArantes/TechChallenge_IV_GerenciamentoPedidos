@@ -4,8 +4,6 @@ import com.fiap.pedido.dto.EnderecoDTO;
 import com.fiap.pedido.entity.Endereco;
 import com.fiap.pedido.repository.EnderecoRepository;
 
-import jakarta.transaction.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +16,6 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
-    // TODO: Implementar método de create
     public EnderecoDTO inserirEndereco(EnderecoDTO EnderecoDTO) {
         Endereco endereco = toEndereco(EnderecoDTO);
 
@@ -26,7 +23,6 @@ public class EnderecoService {
     
         return toEnderecoDTO(endereco); 
     }
-    // TODO: Implementar método de update
     public void updateEndereco(long id, Endereco novoEndereco) {
         Optional<Endereco> enderecoExistente = enderecoRepository.findById(id);
         
@@ -47,7 +43,6 @@ public class EnderecoService {
         }
     }
 
-    // TODO: Implementar método de delete
     public void deleteEndereco(long id) {
         Optional<Endereco> EnderecoExistente = enderecoRepository.findById(id);
 
@@ -59,12 +54,10 @@ public class EnderecoService {
         enderecoRepository.delete(Endereco);
     }
 
-    // TODO: Implementar método de read
     public Endereco readEnderecoById(long id) {
         return enderecoRepository.findById(id).get();
     }
 
-    // TODO: Implementar método de readall
     public List<Endereco> readAllEnderecos() {
         return enderecoRepository.findAll();
     }
