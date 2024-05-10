@@ -9,5 +9,4 @@ public class msGestaoPedido {
 	public static void main(String[] args) {
 		SpringApplication.run(msGestaoPedido.class, args);
 	}
-
 }

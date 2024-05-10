@@ -4,15 +4,19 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 
@@ -26,11 +30,10 @@ public class Endereco {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
-    /**
-     * REMETENTE ou DESTINATARIO
-     */
-    private TipoEndereco tipoEndereco;  
+    //@Enumerated(EnumType.STRING)
+    private TipoEndereco tipoEndereco;/**REMETENTE ou DESTINATARIO*/
 
+    @Column(unique = false, nullable = false)
     private String cep;
 
     private String logradouro;

@@ -1,20 +1,24 @@
 package com.fiap.pedido.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fiap.pedido.dto.EnderecoDTO;
+import com.fiap.pedido.entity.Endereco;
 import com.fiap.pedido.exceptions.ResourcesNotFoundException;
 import com.fiap.pedido.service.EnderecoService;
-import com.fiap.pedido.service.ResourceNotFoundException;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -22,21 +26,41 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class EnderecoController {
 
     @Autowired
-    private EnderecoService EnderecoService;
+    private EnderecoService enderecoService;
 
-
-    //inserir endereço
+    //inserir endereço --OK
     @PostMapping
-    public ResponseEntity<EnderecoDTO> inserEndereco(@RequestBody EnderecoDTO EnderecoDTO) throws ResourcesNotFoundException {
-        EnderecoDTO endereco = EnderecoService.inserirEndereco(EnderecoDTO);
+    public ResponseEntity<EnderecoDTO> inserirEndereco(@RequestBody EnderecoDTO EnderecoDTO) throws ResourcesNotFoundException {
+        EnderecoDTO endereco = enderecoService.inserirEndereco(EnderecoDTO);
 
         return new ResponseEntity<EnderecoDTO>(endereco, HttpStatus.CREATED);
     }
-    //buscar endereço
+    
+    //buscar endereço --OK
+    @GetMapping("/{id}")
+    public ResponseEntity<Endereco> buscarEnderecoById(@PathVariable long id) throws ResourcesNotFoundException {
+        return ResponseEntity.ok(enderecoService.readEnderecoById(id));
+    }
 
-    //listar todos os endereços
-
-    //atualizar endereço
+    //listar todos os endereços --OK
+    @GetMapping
+    public ResponseEntity<List<Endereco>> buscarEnderecos() {
+        return ResponseEntity.ok(enderecoService.readAllEnderecos());
+    }
+    
+    //atualizar endereço --OK
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Endereco> atualizarEndereco(@RequestBody EnderecoDTO EnderecoDTO, @PathVariable long id) throws ResourcesNotFoundException {
+        final Endereco novoEndereco = enderecoService.toEndereco(EnderecoDTO); // Transforma o enderecoDTO;
+        enderecoService.updateEndereco(id, novoEndereco);
+        return ResponseEntity.ok(novoEndereco);
+    }
 
     //deletar endereço
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarEndereco(@PathVariable long id) throws ResourcesNotFoundException {
+        enderecoService.deleteEndereco(id);
+        String message = "Endereço deletado com sucesso!";
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 }
