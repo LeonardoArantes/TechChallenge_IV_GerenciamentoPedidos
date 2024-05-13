@@ -1,4 +1,4 @@
-package com.fiap.pedido.service;
+package com.fiap.pedido.exceptions;
 
 public class ResourceNotFoundException {
 

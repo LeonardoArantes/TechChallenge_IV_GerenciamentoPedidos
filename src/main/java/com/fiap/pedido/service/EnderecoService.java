@@ -16,13 +16,45 @@ public class EnderecoService {
     @Autowired
     private EnderecoRepository enderecoRepository;
 
+    /**
+     * Inserts an EnderecoDTO into the database and returns the corresponding EnderecoDTO.
+     *
+     * @param  EnderecoDTO  the EnderecoDTO object to be inserted
+     * @return              the inserted EnderecoDTO object
+     */
     public EnderecoDTO inserirEndereco(EnderecoDTO EnderecoDTO) {
         Endereco endereco = toEndereco(EnderecoDTO);
 
         enderecoRepository.save(endereco);
     
-        return toEnderecoDTO(endereco); 
+        return toDTO(endereco); 
     }
+    
+    /**
+     * Retrieves an Endereco object from the enderecoRepository by its ID.
+     *
+     * @param  id  the ID of the Endereco object to retrieve
+     * @return     the Endereco object with the specified ID, or null if not found
+     */
+    public Endereco readEnderecoById(long id) {
+        return enderecoRepository.findById(id).get();
+    }
+
+    /**
+     * Retrieves all the enderecos from the enderecoRepository.
+     *
+     * @return  a list of all the enderecos
+     */
+    public List<Endereco> readAllEnderecos() {
+        return enderecoRepository.findAll();
+    }
+
+    /**
+     * Updates an existing Endereco object with the provided ID using the details from novoEndereco.
+     *
+     * @param  id           the ID of the Endereco object to update
+     * @param  novoEndereco the new Endereco object containing updated details
+     */
     public void updateEndereco(long id, Endereco novoEndereco) {
         Optional<Endereco> enderecoExistente = enderecoRepository.findById(id);
         
@@ -43,6 +75,12 @@ public class EnderecoService {
         }
     }
 
+    /**
+     * Deletes an Endereco object with the given id from the database.
+     *
+     * @param  id  the id of the Endereco object to be deleted
+     * @throws IllegalArgumentException if no Endereco object with the given id is found
+     */
     public void deleteEndereco(long id) {
         Optional<Endereco> EnderecoExistente = enderecoRepository.findById(id);
 
@@ -54,18 +92,22 @@ public class EnderecoService {
         enderecoRepository.delete(Endereco);
     }
 
-    public Endereco readEnderecoById(long id) {
-        return enderecoRepository.findById(id).get();
-    }
-
-    public List<Endereco> readAllEnderecos() {
-        return enderecoRepository.findAll();
-    }
-
+    /**
+     * Retrieves an Endereco object from the enderecoRepository by its CEP.
+     *
+     * @param  cep  the CEP of the Endereco object to retrieve
+     * @return     the Endereco object with the specified CEP
+     */
     public Endereco readEnderecoByCep(String cep) {
         return enderecoRepository.findByCep(cep);        
     }
 
+    /**
+     * Converts an EnderecoDTO object to an Endereco object.
+     *
+     * @param  EnderecoDTO  the EnderecoDTO object to be converted
+     * @return              the converted Endereco object
+     */
     public Endereco toEndereco(EnderecoDTO EnderecoDTO) {
         return new Endereco(EnderecoDTO.id(),
                             EnderecoDTO.tipoEndereco(),
@@ -78,7 +120,13 @@ public class EnderecoService {
                             EnderecoDTO.pais()); 
     }
 
-    public EnderecoDTO toEnderecoDTO(Endereco Endereco) {
+    /**
+     * Converts an Endereco object to an EnderecoDTO object.
+     *
+     * @param  Endereco  the Endereco object to be converted
+     * @return           the converted EnderecoDTO object
+     */
+    public EnderecoDTO toDTO(Endereco Endereco) {
         return new EnderecoDTO(Endereco.getId(),
                                 Endereco.getTipoEndereco(),
                                 Endereco.getCep(),

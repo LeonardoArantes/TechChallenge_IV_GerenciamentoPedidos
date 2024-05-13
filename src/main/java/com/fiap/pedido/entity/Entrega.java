@@ -13,6 +13,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 @Entity
 @Table(name ="entrega")
@@ -22,26 +31,24 @@ public class Entrega {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;
+    private long id;//ok
 
-    private long idCliente;
+    private long idCliente;//ok
 
-    private String codigoRastreio;
+    private String codigoRastreio;//ok
 
-    private StatusEntrega statusEntrega; ;
+    private StatusEntrega statusEntrega; //ok
 
-    private LocalDate dataEnvio;
+    private LocalDate dataEnvio;//ok
 
-    private LocalDate dataPrevisaoEntrega;
+    private LocalDate dataPrevisaoEntrega;//ok
 
     private LocalDate dataEntrega;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco Remetente;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "endereco_id", referencedColumnName = "id")
     private Endereco Destinatario;
 
     private double peso;
