@@ -46,10 +46,10 @@ public class Entrega {
     private LocalDate dataEntrega;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private Endereco Remetente;
+    private Endereco remetente;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    private Endereco Destinatario;
+    private Endereco destinatario;
 
     private double peso;
 

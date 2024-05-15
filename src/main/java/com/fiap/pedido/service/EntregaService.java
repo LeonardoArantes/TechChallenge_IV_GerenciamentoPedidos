@@ -4,11 +4,13 @@ import java.util.List;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.fiap.pedido.dto.EntregaDTO;
 import com.fiap.pedido.entity.Entrega;
 import com.fiap.pedido.repository.EntregaRepository;
 
+@Service
 public class EntregaService {
 
     @Autowired

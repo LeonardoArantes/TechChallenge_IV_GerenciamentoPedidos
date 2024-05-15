@@ -19,11 +19,11 @@ import com.fiap.pedido.exceptions.ResourcesNotFoundException;
 import com.fiap.pedido.service.EnderecoService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-
 @RestController
 @RequestMapping(value = "/enderecos")
 public class EnderecoController {
+
+    public static org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(EnderecoController.class);
 
     @Autowired
     private EnderecoService enderecoService;
@@ -39,7 +39,13 @@ public class EnderecoController {
     //buscar endereço --OK
     @GetMapping("/{id}")
     public ResponseEntity<Endereco> buscarEnderecoById(@PathVariable long id) throws ResourcesNotFoundException {
-        return ResponseEntity.ok(enderecoService.readEnderecoById(id));
+        Endereco endereco = enderecoService.readEnderecoById(id);
+        if (endereco == null) {
+            LOGGER.info("Endereço não encontrado");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        LOGGER.info("Endereço {}", endereco.getId());
+        return ResponseEntity.ok(endereco);
     }
 
     //listar todos os endereços --OK

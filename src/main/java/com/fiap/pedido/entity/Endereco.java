@@ -30,7 +30,7 @@ public class Endereco {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
 
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private TipoEndereco tipoEndereco;/**REMETENTE ou DESTINATARIO*/
 
     @Column(unique = false, nullable = false)
