@@ -53,6 +53,6 @@ public class Entrega {
 
     private double peso;
 
-    private BigDecimal valor;
+    private double valor;
 
 }

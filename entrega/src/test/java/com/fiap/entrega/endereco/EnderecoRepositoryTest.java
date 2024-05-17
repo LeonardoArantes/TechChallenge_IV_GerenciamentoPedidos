@@ -23,7 +23,7 @@ import com.fiap.entrega.repository.EnderecoRepository;
 import com.fiap.entrega.service.EnderecoService;
 import com.fiap.entrega.utils.TestHelper;
 
-class EnderecoRepositoryTeste {
+class EnderecoRepositoryTest {
 
     @Mock
     private EnderecoRepository enderecoRepository;

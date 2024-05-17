@@ -43,7 +43,7 @@ public class EntregaService {
      *
      * @return  a list of Entrega objects representing all the entregas
      */
-    public List<Entrega> readAllEntregas() {
+    public List<Entrega> buscarTodasEntregas() {
         return entregaRepository.findAll();
     }
 

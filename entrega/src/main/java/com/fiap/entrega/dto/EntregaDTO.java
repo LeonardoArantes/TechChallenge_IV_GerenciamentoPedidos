@@ -1,6 +1,5 @@
 package com.fiap.entrega.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fiap.entrega.entity.Endereco;
@@ -16,7 +15,7 @@ public record EntregaDTO(long id,
       Endereco Remetente,
       Endereco Destinatario,
       double peso,
-      BigDecimal valor) {
+      double valor) {
 
 
 }

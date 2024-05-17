@@ -43,7 +43,7 @@ public class EntregaController {
 
     @GetMapping
     public ResponseEntity<List<Entrega>> buscarTodasEntregas() {
-        return ResponseEntity.ok(entregaService.readAllEntregas());
+        return ResponseEntity.ok(entregaService.buscarTodasEntregas());
     }
     
     @PutMapping("/update/{id}")

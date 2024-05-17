@@ -2,10 +2,7 @@ package com.fiap.entrega.endereco;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 import java.util.List;
 
@@ -29,7 +26,7 @@ import jakarta.transaction.Transactional;
 @SpringBootTest
 @AutoConfigureTestDatabase
 @Transactional
-public class EnderecoIntegrationTeste {
+public class EnderecoIntegrationTest {
     
     @Autowired
     private EnderecoRepository repository;
