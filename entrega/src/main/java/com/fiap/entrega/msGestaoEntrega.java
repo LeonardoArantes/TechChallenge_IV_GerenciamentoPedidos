@@ -1,13 +1,12 @@
-package com.fiap.pedido;
+package com.fiap.entrega;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SistemaDeGerenciamentoDePedidosIntegradoApplication {
+public class msGestaoEntrega {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaDeGerenciamentoDePedidosIntegradoApplication.class, args);
+		SpringApplication.run(msGestaoEntrega.class, args);
 	}
-
 }

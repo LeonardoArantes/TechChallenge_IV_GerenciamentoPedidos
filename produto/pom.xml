@@ -11,8 +11,8 @@
 	<groupId>com.fiap.produto</groupId>
 	<artifactId>produto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>produto</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Microsserviço Produto</name>
+	<description>Microsserviço de gerenciamento de produto</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
