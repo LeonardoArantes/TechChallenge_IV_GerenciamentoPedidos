@@ -39,7 +39,7 @@ public class EnderecoController {
     //buscar endereço --OK
     @GetMapping("/{id}")
     public ResponseEntity<Endereco> buscarEnderecoById(@PathVariable long id) throws ResourcesNotFoundException {
-        Endereco endereco = enderecoService.readEnderecoById(id);
+        Endereco endereco = enderecoService.buscarEnderecoById(id);
         if (endereco == null) {
             LOGGER.info("Endereço não encontrado");
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -51,21 +51,21 @@ public class EnderecoController {
     //listar todos os endereços --OK
     @GetMapping
     public ResponseEntity<List<Endereco>> buscarEnderecos() {
-        return ResponseEntity.ok(enderecoService.readAllEnderecos());
+        return ResponseEntity.ok(enderecoService.buscarTodosEnderecos());
     }
     
     //atualizar endereço --OK
     @PutMapping("/update/{id}")
     public ResponseEntity<Endereco> atualizarEndereco(@RequestBody EnderecoDTO EnderecoDTO, @PathVariable long id) throws ResourcesNotFoundException {
         final Endereco novoEndereco = enderecoService.toEndereco(EnderecoDTO); // Transforma o enderecoDTO;
-        enderecoService.updateEndereco(id, novoEndereco);
+        enderecoService.atualizarEndereco(id, novoEndereco);
         return ResponseEntity.ok(novoEndereco);
     }
 
     //deletar endereço
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletarEndereco(@PathVariable long id) throws ResourcesNotFoundException {
-        enderecoService.deleteEndereco(id);
+        enderecoService.deletarEndereco(id);
         String message = "Endereço deletado com sucesso!";
         return new ResponseEntity<>(message, HttpStatus.OK);
     }

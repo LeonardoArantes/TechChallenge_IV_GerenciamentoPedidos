@@ -36,7 +36,7 @@ public class EnderecoService {
      * @param  id  the ID of the Endereco object to retrieve
      * @return     the Endereco object with the specified ID, or null if not found
      */
-    public Endereco readEnderecoById(long id) {
+    public Endereco buscarEnderecoById(long id) {
         return enderecoRepository.findById(id).get();
     }
 
@@ -45,7 +45,7 @@ public class EnderecoService {
      *
      * @return  a list of all the enderecos
      */
-    public List<Endereco> readAllEnderecos() {
+    public List<Endereco> buscarTodosEnderecos() {
         return enderecoRepository.findAll();
     }
 
@@ -55,7 +55,7 @@ public class EnderecoService {
      * @param  id           the ID of the Endereco object to update
      * @param  novoEndereco the new Endereco object containing updated details
      */
-    public void updateEndereco(long id, Endereco novoEndereco) {
+    public void atualizarEndereco(long id, Endereco novoEndereco) {
         Optional<Endereco> enderecoExistente = enderecoRepository.findById(id);
         
         if (enderecoExistente.isPresent()) {
@@ -81,7 +81,7 @@ public class EnderecoService {
      * @param  id  the id of the Endereco object to be deleted
      * @throws IllegalArgumentException if no Endereco object with the given id is found
      */
-    public void deleteEndereco(long id) {
+    public void deletarEndereco(long id) {
         Optional<Endereco> EnderecoExistente = enderecoRepository.findById(id);
 
         if (!EnderecoExistente.isPresent()) {
@@ -98,7 +98,7 @@ public class EnderecoService {
      * @param  cep  the CEP of the Endereco object to retrieve
      * @return     the Endereco object with the specified CEP
      */
-    public Endereco readEnderecoByCep(String cep) {
+    public Endereco buscarEnderecoByCep(String cep) {
         return enderecoRepository.findByCep(cep);        
     }
 
