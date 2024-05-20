@@ -19,6 +19,8 @@ import com.fiap.entrega.exceptions.ResourcesNotFoundException;
 import com.fiap.entrega.service.EnderecoService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/enderecos")
 public class EnderecoController {
@@ -30,7 +32,7 @@ public class EnderecoController {
 
     //inserir endereço --OK
     @PostMapping
-    public ResponseEntity<EnderecoDTO> inserirEndereco(@RequestBody EnderecoDTO EnderecoDTO) throws ResourcesNotFoundException {
+    public ResponseEntity<EnderecoDTO> inserirEndereco(@Valid @RequestBody EnderecoDTO EnderecoDTO) throws ResourcesNotFoundException {
         EnderecoDTO endereco = enderecoService.inserirEndereco(EnderecoDTO);
 
         return new ResponseEntity<EnderecoDTO>(endereco, HttpStatus.CREATED);

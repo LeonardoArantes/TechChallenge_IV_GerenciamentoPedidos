@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.Valid;
 
 
 @RestController
@@ -30,7 +31,7 @@ public class EntregaController {
     private EntregaService entregaService;
 
     @PostMapping
-    public  ResponseEntity<EntregaDTO> inserirEntrega(@RequestBody EntregaDTO entregaDTO) throws ResourcesNotFoundException {
+    public  ResponseEntity<EntregaDTO> inserirEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws ResourcesNotFoundException {
         EntregaDTO entrega = entregaService.createEntrega(entregaDTO);
         
         return new ResponseEntity<>(entrega, HttpStatus.CREATED);
