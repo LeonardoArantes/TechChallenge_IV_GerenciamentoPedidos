@@ -19,7 +19,7 @@
 	</properties>
 
 	<modules>
-  			<!-- <module>cliente</module> -->
+  			<module>cliente</module>
 		    <module>entrega</module>
 		    <module>pedido</module>
 		    <module>produto</module>
