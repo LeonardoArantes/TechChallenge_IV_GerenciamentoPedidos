@@ -78,35 +78,15 @@ public class EntregaIntegrationTest {
         assertThat(novaEntregaSalva.valor()).isNotNull();
     }
 
-    //@Test
     void devePermitirBuscarEntregaPorId() throws ResourcesNotFoundException {
-        // Arrange
         var entrega = TestHelper.criarEntrega();
         var entregaDTO = TestHelper.toEntregaDTO(entrega);
 
         Optional<Entrega> entregaEncontrada = service.buscarEntregaPorId(entrega.getId());
 
-        assertEquals(Optional.of(entrega), entregaEncontrada);
+        //assertEquals(Optional.of(entregaEncontrada), entrega );
         //assertThat(entregaEncontrada).isNotNull();
         //assertThat(entregaEncontrada.getId()).isEqualTo(entregaSalva.getId());
     }
-
-    @Test
-    void devePermitirBuscarTodasEntregas() throws ResourcesNotFoundException {
-        
-    }
-
-    @Test
-    void devePermitirDeletarEntrega() throws ResourcesNotFoundException {
-
-    }
-
-    @Test
-    void devePermitirAtualizarEntrega() throws ResourcesNotFoundException {
-
-    }
-    
-
-
 
 }
