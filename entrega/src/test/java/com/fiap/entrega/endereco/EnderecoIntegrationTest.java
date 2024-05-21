@@ -58,6 +58,7 @@ public class EnderecoIntegrationTest {
         var novoEndereco = TestHelper.toEnderecoDTO(TestHelper.criarEndereco());
         var novoEnderecoSalvo = service.inserirEndereco(novoEndereco);
         
+        System.out.println("id novo endereço: "+novoEnderecoSalvo.id());
         assertThat(novoEnderecoSalvo).isNotNull().isInstanceOf(EnderecoDTO.class);
         assertThat(novoEnderecoSalvo.id()).isNotNull();
         assertThat(novoEnderecoSalvo.cep()).isNotNull();

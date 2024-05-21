@@ -1,6 +1,5 @@
 package com.fiap.entrega.entity;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -31,17 +30,17 @@ public class Entrega {
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long id;//ok
+    private long id;
 
-    private long idCliente;//ok
+    private long idCliente;
 
-    private String codigoRastreio;//ok
+    private String codigoRastreio;
 
-    private StatusEntrega statusEntrega; //ok
+    private StatusEntrega statusEntrega;
 
-    private LocalDate dataEnvio;//ok
+    private LocalDate dataEnvio;
 
-    private LocalDate dataPrevisaoEntrega;//ok
+    private LocalDate dataPrevisaoEntrega;
 
     private LocalDate dataEntrega;
 

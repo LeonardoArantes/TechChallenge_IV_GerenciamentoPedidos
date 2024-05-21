@@ -1,6 +1,7 @@
 package com.fiap.entrega.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,15 +33,16 @@ public class EntregaController {
 
     @PostMapping
     public  ResponseEntity<EntregaDTO> inserirEntrega(@Valid @RequestBody EntregaDTO entregaDTO) throws ResourcesNotFoundException {
-        EntregaDTO entrega = entregaService.createEntrega(entregaDTO);
+        EntregaDTO entrega = entregaService.inserirEntrega(entregaDTO);
         
         return new ResponseEntity<>(entrega, HttpStatus.CREATED);
     } 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Entrega> buscarEntregaById(@PathVariable long id) throws ResourcesNotFoundException {
-        return ResponseEntity.ok(entregaService.readEntregabyID(id));
+    public ResponseEntity<Optional<Entrega>> buscarEntregaById(@PathVariable long id) throws ResourcesNotFoundException {
+        return ResponseEntity.ok(entregaService.buscarEntregaPorId(id));
     }
+
 
     @GetMapping
     public ResponseEntity<List<Entrega>> buscarTodasEntregas() {
