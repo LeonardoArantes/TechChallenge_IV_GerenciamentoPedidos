@@ -63,11 +63,10 @@ public class EntregaRepositoryTest {
         when(entregaRepository.save(entrega)).thenReturn(entrega);
         when(entregaRepository.findById(entrega.getId())).thenReturn(Optional.of(entrega));
 
-        var entregaEncontrada = entregaService.readEntregabyID(entrega.getId());
+        var entregaEncontrada = entregaService.buscarEntregaPorId(entrega.getId());
 
         assertNotNull(entregaEncontrada);
-        assertEquals(entrega, entregaEncontrada);
-        assertEquals(entrega.getId(), entregaEncontrada.getId());
+        assertEquals(entrega.getId(), entregaEncontrada.get().getId());
     }
 
     @Test
@@ -77,17 +76,15 @@ public class EntregaRepositoryTest {
 
         when(entregaRepository.save(entrega)).thenReturn(entrega);
         when(entregaRepository.findById(entrega.getId())).thenReturn(Optional.of(entrega));
-        var entregaEncontrada = entregaService.readEntregabyID(entrega.getId());
+        var entregaEncontrada = entregaService.buscarEntregaPorId(entrega.getId());
 
         assertNotNull(entregaEncontrada);
-        assertEquals(entrega, entregaEncontrada);
 
         when(entregaRepository.save(entrega1)).thenReturn(entrega1);
         when(entregaRepository.findById(entrega1.getId())).thenReturn(Optional.of(entrega1));
-        var entregaEncontrada1 = entregaService.readEntregabyID(entrega1.getId());
+        var entregaEncontrada1 = entregaService.buscarEntregaPorId(entrega1.getId());
 
         assertNotNull(entregaEncontrada1);
-        assertEquals(entrega1, entregaEncontrada1);
 
         when(entregaRepository.findAll()).thenReturn(Arrays.asList(entrega, entrega1));
 

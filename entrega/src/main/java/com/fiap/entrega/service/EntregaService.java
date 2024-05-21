@@ -3,18 +3,31 @@ package com.fiap.entrega.service;
 import java.util.List;
 
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.fiap.entrega.dto.EntregaDTO;
+import com.fiap.entrega.entity.Endereco;
 import com.fiap.entrega.entity.Entrega;
+import com.fiap.entrega.repository.EnderecoRepository;
 import com.fiap.entrega.repository.EntregaRepository;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 
 @Service
 public class EntregaService {
 
-    @Autowired
-    private EntregaRepository entregaRepository;
+    private final EntregaRepository entregaRepository;
+    private final EnderecoRepository enderecoRepository;
+
+    public static Logger logger = org.slf4j.LoggerFactory.getLogger(EntregaService.class);
+
+    public EntregaService(EntregaRepository entregaRepository, EnderecoRepository enderecoRepository) {
+        this.entregaRepository = entregaRepository;
+        this.enderecoRepository = enderecoRepository;
+    }
 
     /**
      * Creates a new EntregaDTO based on the provided EntregaDTO.
@@ -22,8 +35,23 @@ public class EntregaService {
      * @param  entregaDTO    the EntregaDTO to create the new EntregaDTO from
      * @return               the newly created EntregaDTO
      */
-    public EntregaDTO createEntrega(EntregaDTO entregaDTO) {
+    @Transactional
+    public EntregaDTO inserirEntrega(EntregaDTO entregaDTO) {
         Entrega entrega = toEntrega(entregaDTO);
+
+        final Endereco remetente = entrega.getRemetente();
+        final Endereco destinatario = entrega.getDestinatario();
+        enderecoRepository.save(remetente);
+        enderecoRepository.save(destinatario);
+        logger.info("Endereço remetente {} criado", remetente.getId());
+        logger.info("Endereço destinatario {} criado", destinatario.getId());
+
+        if (remetente != null && remetente.getId() != 0) 
+            entrega.setRemetente(remetente);
+                
+        if (destinatario != null && destinatario.getId() != 0) 
+            entrega.setDestinatario(destinatario);
+
         entregaRepository.save(entrega);
         return toDTO(entrega);    
     }
@@ -31,11 +59,11 @@ public class EntregaService {
     /**
      * Retrieves an Entrega object from the entregaRepository based on the provided ID.
      *
-     * @param  id  the ID of the Entrega object to retrieve
+     * @param  id the ID of the Entrega object to retrieve
      * @return     the Entrega object with the specified ID, or null if no such object exists
      */
-    public Entrega readEntregabyID(long id) {
-        return entregaRepository.findById(id).get();
+    public Optional<Entrega> buscarEntregaPorId(final long id) {
+        return entregaRepository.findById(id);
     }
 
     /**

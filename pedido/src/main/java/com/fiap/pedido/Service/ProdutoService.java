@@ -1,7 +1,6 @@
 package com.fiap.pedido.Service;
 
 import com.fiap.pedido.DTO.ProdutoDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,7 @@ public class ProdutoService {
 
     private final RestTemplate restTemplate;
 
-    @Autowired
+    //@Autowired
     public ProdutoService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

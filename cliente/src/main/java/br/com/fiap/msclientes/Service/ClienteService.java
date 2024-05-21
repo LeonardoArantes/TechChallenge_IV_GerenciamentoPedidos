@@ -28,7 +28,8 @@ public class ClienteService {
         Cliente cliente = toEntity(clienteDTO);
 
         Cliente finalCliente = cliente;
-        Endereco endereco = EnderecoRepository.findById(cliente.getEndereco().getId())
+        Endereco endereco = EnderecoRepository.findById(
+            cliente.getEndereco().getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Endereço não encontrado para este id: " + finalCliente.getEndereco().getId()));
 
         if (!cpfValidator.validarCPF(cliente.getCpf())) {

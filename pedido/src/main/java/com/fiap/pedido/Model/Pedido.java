@@ -3,7 +3,6 @@ package com.fiap.pedido.Model;
 import com.fiap.pedido.Config.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDate;
 import java.util.List;
