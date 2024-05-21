@@ -21,8 +21,8 @@
 	<modules>
   			<module>cliente</module>
 		    <module>entrega</module>
+			<module>produto</module>
 		    <module>pedido</module>
-		    <module>produto</module>
 	</modules>
 	
 	<dependencies>
