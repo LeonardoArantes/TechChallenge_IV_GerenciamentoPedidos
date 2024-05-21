@@ -8,7 +8,7 @@ COPY . /app/
 RUN mvn package
 
 # Use a imagem oficial do OpenJDK para executar nosso aplicativo Java
-FROM openjdk-18-slim
+FROM openjdk:11-jdk-slim
 
 COPY --from=build /app/target/*.jar app.jar
 
